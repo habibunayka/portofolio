@@ -4,9 +4,9 @@
     --nav-color: #3ca1ff80;
     --project-info-color: #3ca1ff90;
     --nav-a-hover-color: #ffffff90;
-    --about-photo-desc-hover: #3ca1ff60;
+    --scrollbar-color: #ffffff00;
+    --about-photo-desc-hover: #3ca1ff80;
     --white: #ffffff;
-    --background-color: #ffffff;
 }
 
 * {
@@ -20,28 +20,32 @@ a {
     text-decoration: none;
 }
 
+html,
 body {
-    overflow-x: hidden;
-    font-family: "Montserrat", sans-serif;
     scrollbar-width: thin;
-    scrollbar-color: #2b2d31 #232428;
+    scrollbar-color: var(--primary-color) var(--scrollbar-color) !important;
 }
 
-body::-webkit-scrollbar {
+html::-webkit-scrollbar {
     width: 12px;
 }
 
-body::-webkit-scrollbar-track {
-    background: #232428;
+html::-webkit-scrollbar-track {
+    background: var(--scrollbar-color);
 }
 
-body::-webkit-scrollbar-thumb {
-    background: #232428;
+html::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
     border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb:hover {
-    background: #2b2d31;
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--nav-color);
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
 }
 
 .background-main {
@@ -587,12 +591,11 @@ nav ul li a:hover {
 .about-strip {
     background-color: var(--primary-color);
     margin-top: 1vh;
-    height: 0.6vh;
+    height: 0.5vh;
     width: 20vh;
     transition: all 0.8s ease;
     opacity: 0;
     transform: translateX(-15vh);
-
 }
 
 .about-strip-visible {
@@ -650,13 +653,11 @@ nav ul li a:hover {
     transition: 0.6s ease;
     cursor: default;
     opacity: 0;
-    
 }
 
 .about-photo:hover .about-photo-desc {
     opacity: 1;
 }
-
 
 @keyframes photoAnim {
     0% {
@@ -775,7 +776,7 @@ nav ul li a:hover {
     overflow: hidden;
     opacity: 0;
     transform: scale(0.3);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .project-image {
@@ -835,12 +836,10 @@ nav ul li a:hover {
 }
 
 .modal-content {
-    background-color: var(--white);
     margin: 15% auto;
-    padding: 20px;
     border-radius: 10px;
     width: 80%;
-    max-width: 900px;
+    max-width: 80vw;
     position: relative;
 }
 
@@ -854,10 +853,6 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-.close-btn:hover {
-    color: red;
-}
-
 iframe {
     width: 100%;
     height: 60vh;
@@ -865,12 +860,28 @@ iframe {
     border-radius: 2vh;
 }
 
-.skill-container {
+#gear-icon {
+    position: absolute;
+    right: -35vh;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.skill {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    max-height: 100vh;
     padding: 6vh 2vh;
 }
 
@@ -893,7 +904,7 @@ iframe {
     background-color: var(--primary-color);
     margin-top: 1vh;
     height: 0.5vh;
-    width: 18vh;
+    width: 14vh;
     transition: all 0.8s ease;
     opacity: 0;
     transform: translateX(-15vh);
@@ -905,11 +916,13 @@ iframe {
 }
 
 .skill-body {
+    transform: translateX(-15vh);
+
     display: flex;
     flex-direction: column;
     gap: 2vh;
     width: 100%;
-    max-width: 60vw;
+    max-width: 70vw;
 }
 
 .skill-item {
@@ -956,8 +969,8 @@ iframe {
     flex-grow: 1;
 }
 
-.skill-percentage {
-    font-size: 3vh;
+.skill-value {
+    font-size: 2.4vh;
     font-weight: bold;
 }
 
@@ -970,6 +983,10 @@ iframe {
     border-radius: 0.4vh;
 }
 
+.skill-level-hidden {
+    width: 0 !important;
+}
+
 .skill-level {
     height: 100%;
     background-color: var(--nav-a-hover-color);
@@ -977,8 +994,197 @@ iframe {
     top: 0;
     left: 0;
     border-radius: inherit;
+    transition: 0.8s;
 }
 
+.education-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    top: 4vh;
+}
+
+.education-title {
+    color: var(--primary-color);
+    font-size: 5vh;
+}
+
+.education-strip {
+    background-color: var(--primary-color);
+    margin-top: 1vh;
+    margin-bottom: 5vh;
+    height: 0.5vh;
+    width: 28vh;
+    transition: all 0.8s ease;
+    opacity: 0;
+    transform: translateX(-15vh);
+}
+
+.education-strip-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.education {
+    min-height: 100vh;
+}
+
+.education-body {
+    position: relative;
+    max-width: 1000px;
+    margin: 5vh auto;
+    padding: 2vh 0;
+}
+
+.education-body::after {
+    content: "";
+    position: absolute;
+    width: 0.4vh;
+    background-color: #4a90e2;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -0.2vh;
+}
+
+.education-container {
+    padding: 1vh 4vh;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.education-container-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.education-left {
+    left: 0;
+}
+
+.education-right {
+    left: 50%;
+}
+
+.education-container::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 2.2vh;
+    width: 2.5vh;
+    z-index: 1;
+    right: -1.7vh;
+    border: solid transparent;
+    border-width: 1vh;
+    border-right-color: var(--white);
+    transform: rotate(135deg);
+}
+
+.education-right::before {
+    left: -1.6vh;
+    right: auto;
+    border-left-color: var(--white);
+    border-right-color: transparent;
+}
+
+.education-container::after {
+    content: "";
+    position: absolute;
+    width: 2vh;
+    height: 2vh;
+    right: -1vh;
+    background-color: var(--secondary-color);
+    border: 0.3vh solid var(--white);
+    top: 1.5vh;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.education-right::after {
+    left: -1.4vh;
+}
+
+.education-left::after {
+    right: -1.4vh;
+}
+
+.education-content {
+    padding: 2vh 3vh;
+    background-color: var(--primary-color);
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0.2vh 1vh rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.education-left .education-content {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+}
+
+.education-right .education-content {
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+}
+
+.education-content h2 {
+    color: var(--white);
+    margin-bottom: 1vh;
+    font-size: 3.8vh;
+}
+
+.education-content p {
+    color: var(--white);
+    margin: 0;
+    font-size: 2.6vh;
+}
+
+.contact{
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.contact-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    top: 4vh;
+}
+
+.contact-title {
+    color: var(--white);
+    font-size: 5vh;
+    font-weight: 600;
+}
+
+.contact-strip {
+    background-color: var(--white);
+    margin-top: 1vh;
+    height: 0.5vh;
+    width: 24vh;
+    transition: all 0.8s ease;
+    /* opacity: 0;
+    transform: translateX(-15vh); */
+}
+
+.contact-strip-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
 
 @keyframes descAnim {
     0% {
@@ -1003,6 +1209,52 @@ iframe {
 }
 
 @media (max-width: 899px) {
+    header {
+        width: 100%;
+        z-index: 10;
+        padding: 3vh 3vh;
+        margin: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 99;
+    }
+
+    nav {
+        display: none;
+    }
+
+    #nav-menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        z-index: 8;
+        top: 0;
+        right: 0;
+        background: var(--nav-color);
+        width: 250px;
+        height: 100vh;
+        padding-top: 8vh;
+        padding: 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    #nav-menu.active {
+        transform: translateX(0);
+    }
+
+    #nav-menu ul {
+        flex-direction: column;
+        gap: 5vh;
+        margin-top: 8vh;
+    }
+
     .floating-1 {
         left: 7vh;
     }
@@ -1107,7 +1359,7 @@ iframe {
         overflow: hidden;
         opacity: 0;
         transform: scale(0.3);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
 }
 
@@ -1154,52 +1406,6 @@ iframe {
         border-top: 25px solid var(--white);
     }
 
-    header {
-        width: 100%;
-        z-index: 10;
-        padding: 3vh 3vh;
-        margin: 0;
-        top: 0;
-        bottom: 0;
-        border-radius: 0;
-    }
-
-    .hamburger {
-        display: flex;
-        z-index: 99;
-    }
-
-    nav {
-        display: none;
-    }
-
-    #nav-menu {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        z-index: 8;
-        top: 0;
-        right: 0;
-        background: var(--nav-color);
-        width: 250px;
-        height: 100vh;
-        padding-top: 8vh;
-        padding: 2rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-    }
-
-    #nav-menu.active {
-        transform: translateX(0);
-    }
-
-    #nav-menu ul {
-        flex-direction: column;
-        gap: 5vh;
-        margin-top: 8vh;
-    }
-
     .profile {
         margin: 15vh 0;
         height: 60vh;
@@ -1212,6 +1418,9 @@ iframe {
         font-size: 3.5vh;
     }
     .skill-title {
+        font-size: 3.5vh;
+    }
+    .education-title {
         font-size: 3.5vh;
     }
 
@@ -1227,16 +1436,52 @@ iframe {
 
     .project-item {
         width: calc(50% - 4vh);
-        border-radius: 2vh; 
+        border-radius: 2vh;
+    }
+
+    .skill-body {
+        transform: translateX(0);
+        max-width: 90vw;
     }
 
     .project-title {
         font-size: 4vh;
     }
-
-
-
     .skill-bar {
         height: 2.5vh;
+    }
+    .skill-name {
+        margin: 0 0.2vh;
+    }
+
+    .education-body::after {
+        left: 3.1vh;
+    }
+
+    .education-container {
+        width: 100%;
+        padding-left: 7vh;
+        padding-right: 2.5vh;
+    }
+
+    .education-container::before {
+        left: 6vh;
+        border: none;
+    }
+
+    .education-left::after,
+    .education-right::after {
+        left: 1.8vh;
+    }
+
+    .education-right {
+        left: 0%;
+    }
+
+    .education-left .education-content,
+    .education-right .education-content {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
     }
 }

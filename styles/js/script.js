@@ -117,6 +117,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }, options),
+        skillBar: new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove("skill-level-hidden");
+                    observers.skillBar.unobserve(entry.target);
+                }
+            });
+        }, options),
+        eduContent: new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("education-container-visible");
+                    observers.eduContent.unobserve(entry.target);
+                }
+            });
+        }, options),
+        eduStrip: new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("education-strip-visible");
+                    observers.eduStrip.unobserve(entry.target);
+                }
+            });
+        }, options),
     };
 
     const projectItems = document.querySelectorAll(".project-item");
@@ -138,6 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".skill-strip").forEach((el) => observers.skillStrip.observe(el));
     document.querySelectorAll(".skill-item").forEach((el) => observers.skillItem.observe(el));
+    document.querySelectorAll(".skill-level").forEach((el) => observers.skillBar.observe(el));
+    document.querySelectorAll(".education-container").forEach((el) => observers.eduContent.observe(el));
+    document.querySelectorAll(".education-strip").forEach((el) => observers.eduStrip.observe(el));
     document.querySelectorAll(".project-strip").forEach((el) => observers.projectStrip.observe(el));
     document.querySelectorAll(".about-strip").forEach((el) => observers.aboutStrip.observe(el));
     document.querySelectorAll(".about-body").forEach((el) => observers.aboutBody.observe(el));
