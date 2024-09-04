@@ -6,6 +6,8 @@
     --nav-a-hover-color: #ffffff90;
     --scrollbar-color: #ffffff00;
     --about-photo-desc-hover: #3ca1ff80;
+    --notification-bg-color: #3ca1ff99;
+    --form-text-color: #00000080;
     --white: #ffffff;
 }
 
@@ -20,10 +22,17 @@ a {
     text-decoration: none;
 }
 
+html {
+    overflow-x: hidden;
+
+}
+
 html,
 body {
+    clip-path: inset(0 0 0 0);
+    max-width: 100vw;
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--scrollbar-color) !important;
+    scrollbar-color: var(--primary-color) var(--white) !important;
 }
 
 html::-webkit-scrollbar {
@@ -31,7 +40,7 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-track {
-    background: var(--scrollbar-color);
+    background: var(--white);
 }
 
 html::-webkit-scrollbar-thumb {
@@ -44,7 +53,6 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 body {
-    overflow-x: hidden;
     font-family: "Montserrat", sans-serif;
 }
 
@@ -821,28 +829,6 @@ nav ul li a:hover {
     margin: 0;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: 0.5s;
-    transform: trans;
-}
-
-.modal-content {
-    margin: 15% auto;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 80vw;
-    position: relative;
-}
-
 .close-btn {
     position: absolute;
     top: 10px;
@@ -861,6 +847,8 @@ iframe {
 }
 
 #gear-icon {
+    overflow: hidden;
+    z-index: -99;
     position: absolute;
     right: -35vh;
     animation: rotate 20s linear infinite;
@@ -884,6 +872,8 @@ iframe {
     max-height: 100vh;
     padding: 6vh 2vh;
 }
+
+
 
 .skill-header {
     display: flex;
@@ -1147,13 +1137,14 @@ iframe {
     font-size: 2.6vh;
 }
 
-.contact{
+.contact {
     background-color: var(--primary-color);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     min-height: 100vh;
     max-height: 100vh;
+    color: var(--white);
 }
 
 .contact-header {
@@ -1177,13 +1168,123 @@ iframe {
     height: 0.5vh;
     width: 24vh;
     transition: all 0.8s ease;
-    /* opacity: 0;
-    transform: translateX(-15vh); */
 }
 
 .contact-strip-visible {
     opacity: 1;
     transform: translateX(0);
+}
+
+form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80vw;
+    color: white;
+}
+
+form label {
+    font-size: 2.8vh;
+    font-weight: 600;
+    margin: 3vh 0;
+    margin-bottom: 0;
+}
+
+form input {
+    height: 6vh;
+    border-radius: 2vh;
+    margin: 1vh 0;
+    padding: 1vh 2vh;
+}
+
+form .message-input {
+    height: 12vh;
+    border-radius: 2vh;
+    margin: 1vh 0;
+    padding: 1vh 2vh;
+    resize: vertical;
+    overflow-y: auto;
+}
+
+textarea.message-input {
+    height: 12vh;
+    border-radius: 2vh;
+    margin: 1vh 0;
+    padding: 1vh 2vh;
+    resize: none;
+    overflow-y: auto;
+}
+
+form input,
+form textarea {
+    color: var(--form-text-color);
+    height: 6vh;
+    border-radius: 2vh;
+    margin: 1vh 0;
+    padding: 1vh 2vh;
+    border: 2px solid transparent;
+    font-family: "Montserrat", sans-serif;
+    transition: 0.6s;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border: none;
+}
+
+form button {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    margin: 4vh auto;
+    padding: 2vh 8vh;
+    border: none;
+    border-radius: 5vh;
+    transition: 0.6s;
+    font-size: 2.8vh;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+
+form button:hover {
+    background-color: var(--white);
+    color: var(--secondary-color);
+}
+
+.notification {
+    opacity: 0;
+    position: fixed;
+    bottom: 1vh;
+    right: -30vh;
+    margin: 2vh;
+    padding: 4vh 5vh;
+    border-radius: 2vh;
+    background-color: var(--notification-bg-color);
+    transition: 0.5s ease; 
+}
+
+.notification-content {
+    display: flex;
+    color: var(--white);
+    justify-content: space-around;
+    flex-direction: column;
+    padding-right: 8vh;
+}
+
+#notification-title {
+    font-size: 2.5vh;
+    font-weight: 800;
+}
+  
+#notification-message {
+    font-size: 2vh;
+}
+
+footer {
+    position: relative;
+    text-align: center;
+    font-weight: 500;
 }
 
 @keyframes descAnim {
@@ -1205,6 +1306,28 @@ iframe {
     .about-desc {
         margin: 4vh 4vh;
         margin-left: 15vh;
+    }
+}
+
+@media (max-width: 950px){
+    .project-body {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .project-item {
+        width: calc(50% - 20vh);
+        height: 36vh;
+        background-color: var(--white);
+        display: flex;
+        position: relative;
+        color: white;
+        font-size: 2vh;
+        border-radius: 4.4vh;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.3);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
 }
 
@@ -1256,11 +1379,11 @@ iframe {
     }
 
     .floating-1 {
-        left: 7vh;
+        left: 4vh;
     }
 
     .floating-2 {
-        right: 8vh;
+        right: 2vh;
     }
 
     .floating-3 {
@@ -1268,7 +1391,7 @@ iframe {
     }
 
     .floating-4 {
-        left: 13vh;
+        left: 2vh;
     }
 
     .about-body {
@@ -1298,7 +1421,7 @@ iframe {
 
     .about-card {
         height: 69vh;
-        width: 70vh;
+        width: 65vh;
         border-top-right-radius: 4.4vh;
         border-top-left-radius: 4.4vh;
         border-bottom-right-radius: 0;
@@ -1342,30 +1465,13 @@ iframe {
         }
     }
 
-    .project-body {
-        width: 100%;
-        justify-content: space-around;
-    }
 
-    .project-item {
-        width: calc(50% - 20vh);
-        height: 36vh;
-        background-color: var(--white);
-        display: flex;
-        position: relative;
-        color: white;
-        font-size: 2vh;
-        border-radius: 4.4vh;
-        overflow: hidden;
-        opacity: 0;
-        transform: scale(0.3);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
 }
 
 @media (max-width: 768px) {
     .background-main {
         z-index: -10;
+        overflow: hidden;
         bottom: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;

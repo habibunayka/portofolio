@@ -218,4 +218,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateCarousel();
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollX > 0) {
+            window.scrollTo(0, window.scrollY);
+        }
+    });    
+    window.addEventListener('load', function() {
+        window.scrollTo(0, 0);
+        document.body.style.overflowX = 'hidden';
+    });
+    
+    window.addEventListener('resize', function() {
+        document.body.style.overflowX = 'hidden';
+    });
+
+    window.onload = function() {
+        window.scrollTo(0, 0);
+    };
 });
