@@ -1,4 +1,5 @@
-:root {
+
+ :root {
     --primary-color: #2795fb;
     --secondary-color: #3ca1ff;
     --nav-color: #3ca1ff80;
@@ -29,8 +30,7 @@ html {
 
 html,
 body {
-    clip-path: inset(0 0 0 0);
-    max-width: 100vw;
+    
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) var(--white) !important;
 }
@@ -56,6 +56,14 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+main {
+    min-width: 105vw;
+}
+
+.background {
+    overflow-x:hidden;
+}
+
 .background-main {
     position: absolute;
     right: 0;
@@ -65,7 +73,7 @@ body {
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     height: 100vh;
-    width: 110vw;
+    width: 110%;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -166,6 +174,7 @@ header {
 }
 
 header.sticky {
+
     z-index: 9;
     background: var(--nav-color);
     backdrop-filter: blur(10px);
@@ -333,7 +342,7 @@ nav ul li a:hover {
 .hamburger .bar {
     z-index: 9;
 
-    width: 4.4vh;
+    width: 30px;
     height: 3px;
     background-color: var(--white);
     border-radius: 5px;
@@ -579,6 +588,7 @@ nav ul li a:hover {
     flex-direction: column;
     justify-content: flex-start;
     max-height: 100vh;
+    min-width: 100vw;
     align-items: center;
 }
 
@@ -732,6 +742,7 @@ nav ul li a:hover {
     justify-content: flex-start;
     min-height: 100vh;
     max-height: 100vh;
+    min-width: 100vw;
     align-items: center;
 }
 .project-header {
@@ -1333,7 +1344,7 @@ footer {
 
 @media (max-width: 899px) {
     header {
-        width: 100%;
+            min-width:105vw;
         z-index: 10;
         padding: 3vh 3vh;
         margin: 0;
@@ -1383,6 +1394,7 @@ footer {
     }
 
     .floating-2 {
+        opacity: 0;
         right: 2vh;
     }
 
@@ -1391,6 +1403,7 @@ footer {
     }
 
     .floating-4 {
+        opacity: 0;
         left: 2vh;
     }
 
@@ -1402,6 +1415,8 @@ footer {
         margin: 5vh 0;
         top: 0;
     }
+    
+    #gear-icon {display:none;} 
 
     .about-photo {
         height: 30vh;
@@ -1418,10 +1433,11 @@ footer {
     .about-desc-visible {
         animation: descAnim 2.5s ease;
     }
+    
 
     .about-card {
         height: 69vh;
-        width: 65vh;
+        width: 90vw;
         border-top-right-radius: 4.4vh;
         border-top-left-radius: 4.4vh;
         border-bottom-right-radius: 0;
@@ -1433,7 +1449,7 @@ footer {
         text-align: center;
         margin: 2vh 4vh;
         margin-top: 18vh;
-        font-size: 2.6vh;
+        font-size: 2.2vh;
     }
 
     @keyframes photoAnim {
@@ -1469,6 +1485,8 @@ footer {
 }
 
 @media (max-width: 768px) {
+    body {
+    }
     .background-main {
         z-index: -10;
         overflow: hidden;
@@ -1476,7 +1494,7 @@ footer {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         height: 140vh;
-        width: 100vw;
+        min-width: 105vw;
         transform: 0;
     }
 
@@ -1508,7 +1526,7 @@ footer {
     }
 
     .arrow {
-        top: 15vh;
+        top: 5vh;
         border-top: 25px solid var(--white);
     }
 
@@ -1529,6 +1547,8 @@ footer {
     .education-title {
         font-size: 3.5vh;
     }
+    
+    #gear-icon {display:none !important;} 
 
     .project-body {
         justify-content: space-around;
